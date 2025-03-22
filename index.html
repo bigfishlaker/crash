@@ -4,32 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VirtualCrashOut</title>
-
-    <!-- Optional: If you separate your CSS into a file -->
     <link rel="stylesheet" href="style.css">
-
     <style>
-        /* ===== BASIC STYLES ===== */
         body {
             background-color: black;
             color: limegreen;
             font-family: "Courier New", monospace;
             text-align: center;
+            position: relative;
+            overflow-x: hidden;
         }
-
         pre {
             font-family: "Courier New", monospace;
             white-space: pre;
             line-height: 1.2;
             font-size: 8px;
         }
-
         p, #hiddenText {
             font-size: 16px;
             margin-top: 20px;
             color: limegreen;
         }
-
         button {
             margin-top: 20px;
             padding: 10px 20px;
@@ -39,14 +34,11 @@
             border: 2px solid limegreen;
             cursor: pointer;
         }
-
-        /* ===== FLAIR FOR \"Laker Bradey\" ===== */
         #hiddenText span {
             color: #00ffcc;
             font-weight: bold;
             animation: glow 1s ease-in-out infinite alternate;
         }
-
         @keyframes glow {
             from {
                 text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
@@ -55,11 +47,22 @@
                 text-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc;
             }
         }
+        /* Slide-up image effect */
+        #popupImage {
+            position: fixed;
+            bottom: -400px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            transition: bottom 1s ease-in-out;
+            z-index: 1;
+        }
+        #popupImage.show {
+            bottom: 20px;
+        }
     </style>
 </head>
 <body>
-
-    <!-- ===== ASCII TITLE ===== -->
     <pre>
     ██████╗ ██╗ ███████╗    ███████╗██╗███████╗██╗  ██╗
     ██╔══██╗██║██╔════╝    ██╔════╝██║██╔════╝██║  ██║
@@ -69,22 +72,21 @@
     ╚═╝     ╚═╝╚══════╝    ╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
     </pre>
 
-    <!-- ===== BUTTON + HIDDEN TEXT ===== -->
     <button onclick="revealText()">Balling out like a laker</button>
-
     <p id="hiddenText" style="display:none">
         <span>Laker Bradey</span> loves Ferdy Fish
     </p>
 
-    <!-- ===== REDIRECT SCRIPT ===== -->
+    <img src="image.png" id="popupImage" alt="Creed Guy">
+
     <script>
         function revealText() {
             document.getElementById('hiddenText').style.display = 'block';
+            document.getElementById('popupImage').classList.add('show');
             setTimeout(function() {
                 window.location.href = "https://ferdyflip.xyz/referral/bigfishbuilt";
             }, 5000);
         }
     </script>
-
 </body>
 </html>
