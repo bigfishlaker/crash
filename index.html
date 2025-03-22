@@ -33,6 +33,19 @@
             color: limegreen;
             border: 2px solid limegreen;
             cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        button.shake {
+            animation: wobble 0.6s ease-in-out;
+        }
+        @keyframes wobble {
+            0% { transform: translateX(0); }
+            15% { transform: translateX(-10px) rotate(-5deg); }
+            30% { transform: translateX(10px) rotate(5deg); }
+            45% { transform: translateX(-10px) rotate(-5deg); }
+            60% { transform: translateX(10px) rotate(5deg); }
+            75% { transform: translateX(-5px) rotate(-2deg); }
+            100% { transform: translateX(0); }
         }
         #hiddenText span {
             color: #00ffcc;
@@ -72,20 +85,28 @@
     ╚═╝     ╚═╝╚══════╝    ╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
     </pre>
 
-    <button onclick="revealText()">Balling out like a laker</button>
+    <button id="actionButton" onclick="revealText()">Balling out like a laker</button>
     <p id="hiddenText" style="display:none">
         <span>Laker Bradey</span> loves Ferdy Fish
     </p>
 
-    <img src="IMG_0432.png" id="popupImage" alt="Creed Guy">
+    <img src="creed-guy.png" id="popupImage" alt="Creed Guy">
 
     <script>
         function revealText() {
-            document.getElementById('hiddenText').style.display = 'block';
-            document.getElementById('popupImage').classList.add('show');
-            setTimeout(function() {
-                window.location.href = "https://ferdyflip.xyz/referral/bigfishbuilt";
-            }, 5000);
+            const chance = Math.random();
+            const button = document.getElementById('actionButton');
+
+            if (chance > 0.9) { // 10% chance to succeed
+                document.getElementById('hiddenText').style.display = 'block';
+                document.getElementById('popupImage').classList.add('show');
+                setTimeout(function() {
+                    window.location.href = "https://ferdyflip.xyz/referral/bigfishbuilt";
+                }, 5000);
+            } else {
+                button.classList.add('shake');
+                setTimeout(() => button.classList.remove('shake'), 600);
+            }
         }
     </script>
 </body>
